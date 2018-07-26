@@ -1,5 +1,5 @@
 require 'active_record'
-require 'arel/visitors/bind_visitor'
+# require 'arel/visitors/bind_visitor'
 require 'odbc'
 
 require 'odbc_adapter/database_limits'
@@ -174,7 +174,7 @@ module ActiveRecord
         if error_number == ERR_DUPLICATE_KEY_VALUE
           ActiveRecord::RecordNotUnique.new(message, exception)
         elsif error_number == ERR_QUERY_TIMED_OUT || exception.message =~ ERR_QUERY_TIMED_OUT_MESSAGE
-          ::ODBCAdapter::QueryTimeoutError.new(message, exception)
+          ::ODBCAdapter::QueryTimeoutError.new(message)
         else
           super
         end
